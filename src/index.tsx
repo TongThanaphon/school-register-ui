@@ -1,16 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import App from './App'
+// import SchoolRegister from './pages'
+import App from './pages/App'
 import * as serviceWorker from './serviceWorker'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './theme'
 import 'antd/dist/antd.css'
+import { makeStore } from './modules'
+import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
+
+const { store } = makeStore()
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <App />
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root'),
